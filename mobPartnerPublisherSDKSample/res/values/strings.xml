@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">mobPartnerPublisherSDKSample</string>
+    <string name="action_settings">Settings</string>
+    <string name="interstitial_show">Show Interstitial</string>
+    <string name="refresh_banner">Refresh Banner</string>
+    <string name="mobpartner">MobPartner</string>
+    <string name="PoolID">PoolID: </string>
+    <string name="mobWall">MobWall </string>
+    <string name="demoPool">3809</string>
+</resources>
