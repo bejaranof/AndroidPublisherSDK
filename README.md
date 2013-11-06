@@ -7,7 +7,7 @@ Before integrating the library you should be sure MobPartner provided you the **
 
 ## Installations
 
-- Add the library ‘MobPartnerAndroidPublisherSDK.jar’ to your project.
+- Add the library [MobPartnerAndroidPublisherSDK.jar](MobPartnerAndroidPublisherSDK.jar) to your project.
 
 - In `Build Path`, make sure its listed in `Libraries` and selected in `Order and Export`.
 
@@ -39,20 +39,14 @@ Add the following to your **AndroidManifest.xml** file (required only for **Mobw
 
 Add the following to your xml layout (required only for **banner** display)
 
-- Add xlmns attribute to your layout 
-
-```
-xmlns:mobpartner= http://schemas.android.com/apk/lib/com.mobpartner.android.publisher 
-```
-
-- Add the banner to your XML layout 
+Add the banner to your XML layout 
 
 ```xml
 <com.mobpartner.android.publisher.views.MobPartnerAdBanner
-android:id="@+id/banner"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-mobpartner:poolID=POOL_ID />
+    android:id="@+id/banner"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    mobpartner:poolID="POOL_ID" />
 ```
 
 ####Programatically:
@@ -74,11 +68,7 @@ private String Pool_ID;
 ###MobPartner Banner
 
 1. Initialize your Banner: `banner = new MobPartnerAdBanner(this, POOL_ID);`
-
-
-
 2. Retrieve the view in your activity: `banner = (MobPartnerAdBanner)findViewById(R.id.banner); `
-
 3. Fetch content to fill your view: `banner.getMobPartnerAd();`
 
 
