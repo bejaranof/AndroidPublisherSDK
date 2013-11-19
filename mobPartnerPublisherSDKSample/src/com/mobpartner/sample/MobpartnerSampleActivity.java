@@ -33,7 +33,6 @@ public class MobpartnerSampleActivity extends Activity {
 	private String mPoolID;
 	private EditText poolID;
 	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
