@@ -7,7 +7,7 @@ Before integrating the library you should be sure MobPartner provided you the **
 
 ## Installations
 
-- Add the library [MobPartnerAndroidPublisherSDK.jar](MobPartnerAndroidPublisherSDK.jar) to your project.
+- Add the library [MobPartnerAndroidPublisherSDK.jar](https://github.com/MobPartner/AndroidPublisherSDK/raw/master/MobPartnerAndroidPublisherSDK2_1.jar) to your project.
 
 - In `Build Path`, make sure its listed in `Libraries` and selected in `Order and Export`.
 
@@ -140,19 +140,19 @@ onAdDisappeared(MobPartnerAdView adView);
 
 
 ##Additional Parameters for Banners and Interstitials
-- setKeyword - This parameter is forwarded to the advertiser for specific campaign.
+- setBannerRotationPeriod - This parameter allows users to override the banner rotation period.
 ```java
-interstitial.setKeyword("key");
+banner.setBannerRotationPeriod(milliseconds);
 ```
 
-- setSubId - Any ID you need to have in your stats (for example sub affiliate value)
+- setBackgroundColor - This parameter allows users to override the interstitial background color.
 ```java
-interstitial.setSubId("subid");
+interstitial.setBackgroundColor(color);
 ```
 
-- setOptional - 6 optional parameters can be sent to the adserver.
+- setInterstitialClosingButtonDelay - This parameter allows users to override the interstitial closing button delay.
 ```java
-interstitial.setOptional1("bla1");
+interstitial.setInterstitialClosingButtonDelay(milliseconds);
 ```
 
 
