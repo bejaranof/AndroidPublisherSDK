@@ -23,7 +23,7 @@
 
 ## Add admob banner to your project
 
-Before starting with Admob integration please make sure you added Mobparter's publisher SDK library to your project, you can find it at:
+Before starting with Admob integration please make sure you added Mobpartner's publisher SDK library to your project, you can find it at:
 [https://github.com/MobPartner/AndroidPublisherSDK](https://github.com/MobPartner/AndroidPublisherSDK)
 
 You can find the Admob documentation here:
