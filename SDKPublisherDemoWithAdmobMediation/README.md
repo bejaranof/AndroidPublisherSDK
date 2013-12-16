@@ -77,3 +77,5 @@ MediationAdRequest mediationAdRequest,
 }
 
 ```
+
+You can find a demo project here with the name of [SDKPublisherDemoWithAdmobMediation](https://github.com/MobPartner/AndroidPublisherSDK/tree/master/SDKPublisherDemoWithAdmobMediation/mobPartnerPublisherSDKSampleWithAdMob)
