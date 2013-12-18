@@ -1,8 +1,8 @@
-# How to Integrate MobPartner with admob mediation
+# How to Integrate MobPartner with Admob Mediation
 
 ## Create a Custom Event on Admob Mediation Website
 
-- Log in to your Admob mediation account at [https://mediation.admob.com](https://mediation.admob.com)
+- Log in to your Admob Mediation account at [https://mediation.admob.com](https://mediation.admob.com)
 
 - Click on `Site & Apps` then choose `Ad Network Mediation` tab.
 
@@ -23,7 +23,7 @@
 
 ## Add admob banner to your project
 
-Before starting with Admob integration please make sure you added Mobpartner's publisher SDK library to your project, you can find it at:
+Before starting with Admob integration please make sure you added MobPartner's publisher SDK library to your project, you can find it at:
 [https://github.com/MobPartner/AndroidPublisherSDK](https://github.com/MobPartner/AndroidPublisherSDK)
 
 You can find the Admob documentation here:
@@ -42,7 +42,7 @@ You can find the Admob documentation here:
 ```
 - Add com.google.ads.Adview to your UI. [https://developers.google.com/mobile-ads-sdk/docs/admob/fundamentals#android] (https://developers.google.com/mobile-ads-sdk/docs/admob/fundamentals#android)
 
-- Implement the custom event created on the Admob mediation website by defining a class with the same class name set in the configuration in your project. This could be as the following.
+- Implement the custom event created on the Admob Mediation website by defining a class with the same class name set in the configuration in your project. This could be as the following.
 Or you can just add [mobpartnerCustomEventBannerAdapter.jar] (https://github.com/MobPartner/AndroidPublisherSDK/blob/master/SDKPublisherDemoWithAdmobMediation/mobpartnerCustomEventBannerAdapter.jar) directly to your project.
 
 
