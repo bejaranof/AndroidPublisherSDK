@@ -1,9 +1,9 @@
 ## Introduction
 This document describes the integration steps to include MobPartner Publisher library for your Android application.
-This library allows you to display advertising banners, interstitials and mobwall.
+This library allows you to display advertising banners, interstitials and Mobwall.
 
 ## Prerequisites
-Before integrating the library you should be sure MobPartner provided you the **Pool ID**.
+Before integrating the library you should make sure MobPartner provided you a **Pool ID**.
 
 ## Installations
 
@@ -12,10 +12,10 @@ Before integrating the library you should be sure MobPartner provided you the **
 - In `Build Path`, make sure its listed in `Libraries` and selected in `Order and Export`.
 
 
-## Setup your project for ad display
+## Setup your Project for Ad Display
 
 
-###Add the required Permission
+###Add the Required Permission
 Add the following to your **AndroidManifest.xml** file
 
 ```xml
@@ -25,7 +25,7 @@ Add the following to your **AndroidManifest.xml** file
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 ```
 
-###Add the required Activity
+###Add the Required Activity
 Add the following to your **AndroidManifest.xml** file (required only for **Mobwall**)
 ```xml
 <activity
@@ -34,12 +34,11 @@ Add the following to your **AndroidManifest.xml** file (required only for **Mobw
 </activity>
 ```
 
-###Add required Layouts
-####By xml:
+###Add Required Layouts
+####By XML:
 
 Add the following to your xml layout (required only for **banner** display)
 
-Add the banner to your XML layout 
 
 ```xml
 <com.mobpartner.android.publisher.views.MobPartnerAdBanner
@@ -67,14 +66,14 @@ private String Pool_ID;
 
 ###MobPartner Banner
 
-1. Initialize your Banner: `banner = new MobPartnerAdBanner(this, POOL_ID);`
+1. Initialize your banner: `banner = new MobPartnerAdBanner(this, POOL_ID);`
 2. Retrieve the view in your activity: `banner = (MobPartnerAdBanner)findViewById(R.id.banner); `
 3. Fetch content to fill your view: `banner.getMobPartnerAd();`
 
 
 ###MobPartner Interstitial
 
-1. Initialize your Interstitial: `interstitial = new MobPartnerAdInterstitial(this, POOL_ID);`
+1. Initialize your interstitial: `interstitial = new MobPartnerAdInterstitial(this, POOL_ID);`
 2. Fetch content for your interstitial: `interstitial.fetchAds ();`
 3. Display it: `interstitial.show ();`
 
@@ -126,7 +125,7 @@ onLoadAdSucceeded(MobPartnerAdView adView, MobPartnerAdCampaign ads);
 onLoadFailed(MobPartnerAdView adView, String errorMessage); 
 ```
  
-- This callback is triggered when the user clicks an Ad.
+- This callback is triggered when the user clicks an ad.
 ```java
 onAdClicked(MobPartnerAdView adView, MobPartnerAdObject ad);
 ```
