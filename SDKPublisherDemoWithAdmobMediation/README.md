@@ -21,7 +21,7 @@
 	- **Parameter** : is the poolID given by MobPartner.
 
 
-## Add admob banner to your project
+## Add Admob Banner to Your Project
 
 Before starting with Admob integration please make sure you added MobPartner's publisher SDK library to your project, you can find it at:
 [https://github.com/MobPartner/AndroidPublisherSDK](https://github.com/MobPartner/AndroidPublisherSDK)
