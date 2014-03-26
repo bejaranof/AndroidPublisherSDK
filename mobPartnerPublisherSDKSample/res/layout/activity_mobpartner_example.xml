@@ -107,8 +107,7 @@
 	        <com.mobpartner.android.publisher.views.MobPartnerAdBanner
 			    android:id="@+id/bannerdisplay"
 			    android:layout_width="fill_parent"
-			    android:layout_height="wrap_content"
-			    android:background="#999999" />         
+			    android:layout_height="wrap_content"/>         
         
     	</LinearLayout>
             

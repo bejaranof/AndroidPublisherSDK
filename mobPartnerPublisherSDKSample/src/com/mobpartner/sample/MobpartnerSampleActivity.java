@@ -224,7 +224,4 @@ public class MobpartnerSampleActivity extends Activity {
 	}
 
 
-    
-    
-
 }
