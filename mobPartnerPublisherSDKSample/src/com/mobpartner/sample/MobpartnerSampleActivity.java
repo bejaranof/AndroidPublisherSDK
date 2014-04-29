@@ -17,15 +17,12 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 @SuppressLint("ShowToast")
 public class MobpartnerSampleActivity extends Activity {
 	
-	private Button mBtnInterstitialShow;
-	private Button mBtnBanner;
 	private MobPartnerAdBanner mBanner;
 	private MobPartnerAdInterstitial mInterstitial;
 	private MobPartnerMobwall mMobwall;
@@ -40,9 +37,6 @@ public class MobpartnerSampleActivity extends Activity {
 		
 		//Get MobPartnerAdBanner View Instance
 		mBanner = (MobPartnerAdBanner)findViewById(R.id.bannerdisplay);
-		
-		mBtnBanner = (Button)findViewById(R.id.button2);	
-		mBtnInterstitialShow = (Button)findViewById(R.id.button1);
 		
 		poolID = (EditText)findViewById(R.id.editText1);
 		mPoolID = poolID.getText().toString();
