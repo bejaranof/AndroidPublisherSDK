@@ -1,13 +1,13 @@
 ## Introduction
-This document describes the integration steps to include MobPartner Publisher library for your Android application.
-This library allows you to display advertising banners, interstitials and Mobwall.
+This document describes the integration steps to include MobPartner Publisher library to your Android application.
+This library allows you to display advertising banners, interstitials, Mobwall, MobWidget and MobStream.
 
 ## Prerequisites
-Before integrating the library you should make sure MobPartner provided you a **Pool ID**.
+Before integrating the library you should make sure MobPartner provided you with a **Pool ID**.
 
 ## Installations
 
-- Add the library [MobPartnerAndroidPublisherSDK.jar](https://github.com/MobPartner/AndroidPublisherSDK/raw/master/MobPartnerAndroidPublisherSDK2_1.jar) to your project.
+- Add the library [MobPartnerAndroidPublisherSDK.jar](https://github.com/MobPartner/AndroidPublisherSDK/raw/master/MobPartnerAndroidPublisherSDK3_0.jar) to your project.
 
 - In `Build Path`, make sure its listed in `Libraries` and selected in `Order and Export`.
 
@@ -25,21 +25,17 @@ Add the following to your **AndroidManifest.xml** file
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 ```
 
-###Add the Required Activity
-Add the following to your **AndroidManifest.xml** file (required only for **Mobwall**)
-```xml
-<activity
-	android:name="com.mobpartner.android.publisher.views.MobPartnerMobwallActivity"
-	android:theme="@android:style/Theme.NoTitleBar">
-</activity>
-```
-
 ###Add Required Layouts
 ####By XML:
 
-Add the following to your xml layout (required only for **banner** display)
+Add xlmns attribute to your layout (required only for **banner** and **MobStream** display)
+```xml
+xmlns:mobpartner= http://schemas.android.com/apk/lib/com.mobpartner.android.publisher
+```
 
+Add the following to your xml layout (required only for **banner** and **MobStream** display)
 
+**For Banners: **
 ```xml
 <com.mobpartner.android.publisher.views.MobPartnerAdBanner
     android:id="@+id/banner"
@@ -48,8 +44,16 @@ Add the following to your xml layout (required only for **banner** display)
     mobpartner:poolID="POOL_ID" />
 ```
 
-####Programatically:
-Programmatically add your banner to your layout and initialize it. Code below is only an example. You can adapt it to your needs.
+**For MobStream: **
+```xml
+<com.mobpartner.android.publisher.views.MobPartnerMobStream
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    mobpartner:poolID="POOL_ID" />
+```
+
+####Programmatically:
+Programmatically add your banner to your layout and initialize. The code below is only an example and you can adapt it to your needs.
 
 ```java
 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
@@ -68,7 +72,7 @@ private String Pool_ID;
 
 1. Initialize your banner: `banner = new MobPartnerAdBanner(this, POOL_ID);`
 2. Retrieve the view in your activity: `banner = (MobPartnerAdBanner)findViewById(R.id.banner); `
-3. Fetch content to fill your view: `banner.getMobPartnerAd();`
+3. Fetch content to fill your view: `banner.show`  
 
 
 ###MobPartner Interstitial
@@ -81,6 +85,15 @@ private String Pool_ID;
 ###MobPartner MobWall
 1. Initialize your Mobwall: `mobwall = new MobPartnerMobwall(this, POOL_ID);`
 2. Show mobwall view: `mobwall.show();`
+
+###MobPartner MobWidget
+1. Initialize your MobWidget: `mobwidget = new MobPartnerMobWidget(this, POOL_ID);`
+2. Show mobwall view: `mobwidget.show();`
+
+###MobPartner MobStream
+1. Initialize your MobStream: `mobstream = new MobPartnerMobStream(this, POOL_ID);`
+2. Retrieve the view in your activity: `mobstream = (MobPartnerMobStream)findViewById(R.id.mobstream); `
+2. Show mobwall view: `mobstream.show();`
 
 
 ## Callbacks
@@ -103,57 +116,26 @@ banner.setMobPartnerAdListener(new MobPartnerAdListener() {
 
 
 ###Callbacks
-
-- For banner only. This callback is triggered when the displayed ad changes.
-```java
-onAdChanged(MobPartnerAdView adview, MobPartnerAdObject ad);
-```
-
  
 - This callback is triggered when the fetch of an ad starts.  
 ```java
-onStartDownloadAds(MobPartnerAdView adView);
+onStartDownloadAds();
 ```
 
 - This callback is triggered when the SDK successfully fetched the ads.
 ```java
-onLoadAdSucceeded(MobPartnerAdView adView, MobPartnerAdCampaign ads); 
+onLoadAdSucceeded(); 
 ``` 
 
 - This callback is triggered when the fetch of ads failed or when there is no ad served.
 ```java
-onLoadFailed(MobPartnerAdView adView, String errorMessage); 
+onLoadFailed(String errorMessage); 
 ```
- 
-- This callback is triggered when the user clicks an ad.
+
+- This callback is triggered when the Interstitial and MobWall disappear (automatically or because user dismissed it)
 ```java
-onAdClicked(MobPartnerAdView adView, MobPartnerAdObject ad);
+onAdDisappeared(); 
 ```
-
-- For interstitial only. This callback is triggered when the interstitial disappears (automatically or because user dismissed it).
-```java
-onAdDisappeared(MobPartnerAdView adView); 
-```
-
-
-
-
-##Additional Parameters for Banners and Interstitials
-- setBannerRotationPeriod - This parameter allows users to override the banner rotation period.
-```java
-banner.setBannerRotationPeriod(milliseconds);
-```
-
-- setBackgroundColor - This parameter allows users to override the interstitial background color.
-```java
-interstitial.setBackgroundColor(color);
-```
-
-- setInterstitialClosingButtonDelay - This parameter allows users to override the interstitial closing button delay.
-```java
-interstitial.setInterstitialClosingButtonDelay(milliseconds);
-```
-
 
 ## Demo Project
 An Android demo project is available to test the different implementations and check the configurations. 
