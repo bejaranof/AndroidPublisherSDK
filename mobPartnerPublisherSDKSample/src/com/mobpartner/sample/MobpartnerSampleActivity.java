@@ -1,13 +1,10 @@
 package com.mobpartner.sample;
 
-
-import com.mobpartner.android.publisher.http.MobPartnerAdCampaign;
-import com.mobpartner.android.publisher.http.MobPartnerAdObject;
 import com.mobpartner.android.publisher.views.MobPartnerAdBanner;
 import com.mobpartner.android.publisher.views.MobPartnerAdInterstitial;
 import com.mobpartner.android.publisher.views.MobPartnerAdListener;
-import com.mobpartner.android.publisher.views.MobPartnerAdView;
-import com.mobpartner.android.publisher.views.MobPartnerMobwall;
+import com.mobpartner.android.publisher.views.MobPartnerMobStream;
+import com.mobpartner.android.publisher.views.MobPartnerMobWall;
 
 import android.os.Bundle;
 import android.annotation.SuppressLint;
@@ -24,8 +21,9 @@ import android.widget.Toast;
 public class MobpartnerSampleActivity extends Activity {
 	
 	private MobPartnerAdBanner mBanner;
+	private MobPartnerMobStream mMobstream;
 	private MobPartnerAdInterstitial mInterstitial;
-	private MobPartnerMobwall mMobwall;
+	private MobPartnerMobWall mMobwall;
 	private static String LOG_TAG="MobpartnerSampleApp";
 	private String mPoolID;
 	private EditText poolID;
@@ -36,7 +34,8 @@ public class MobpartnerSampleActivity extends Activity {
 		setContentView(R.layout.activity_mobpartner_example);
 		
 		//Get MobPartnerAdBanner View Instance
-		mBanner = (MobPartnerAdBanner)findViewById(R.id.bannerdisplay);
+		mBanner = (MobPartnerAdBanner)findViewById(R.id.banner);
+		mMobstream = (MobPartnerMobStream)findViewById(R.id.mobstream);
 		
 		poolID = (EditText)findViewById(R.id.editText1);
 		mPoolID = poolID.getText().toString();
@@ -69,9 +68,6 @@ public class MobpartnerSampleActivity extends Activity {
 	
 		//Set listener to know any ad status notification
 		mInterstitial.setMobPartnerAdListener(mInsterstitialListener);
-
-		//Set interstitial parameters
-		mInterstitial.fetchAds();
 		
 		//Display Interstitial
 		mInterstitial.show();
@@ -79,9 +75,9 @@ public class MobpartnerSampleActivity extends Activity {
 	}
 	
 	
-	public void refreshBanner (View view){
-		
-		if(mBanner != null) mBanner.stopOrPauseMobPartnerAd();
+	public void showBanner (View view){		
+		mMobstream.setVisibility(View.GONE);
+		mBanner.setVisibility(View.VISIBLE);
 		
 		//Set listener to know any ad status notification
 		mBanner.setMobPartnerAdListener(mBannerListener);
@@ -90,54 +86,52 @@ public class MobpartnerSampleActivity extends Activity {
 		mBanner.setPoolId(mPoolID);
 		
 		//Displays banner
-		mBanner.getMobPartnerAd();
+		mBanner.show();
+		
+	}
+	
+	public void showMobStream (View view){	
+		mBanner.setVisibility(View.GONE);
+		mMobstream.setVisibility(View.VISIBLE);
+		
+		//Configure banner parameter
+		mMobstream.setPoolId(mPoolID);
+		
+		//Displays banner
+		mMobstream.show();
 		
 	}
 
 	public void mobwallShow (View view){
 		//Initialize Mobwall instance
-		mMobwall = new MobPartnerMobwall(this, mPoolID);
+		mMobwall = new MobPartnerMobWall(this, mPoolID);
 		//Call and show Mobwall
 		mMobwall.show();
-				
 	}
 	
 	
 	private MobPartnerAdListener mBannerListener = new MobPartnerAdListener() {
 		
 		@Override
-		public void onStartDownloadAds(MobPartnerAdView arg0) {
+		public void onStartDownloadAds() {
 			// TODO Auto-generated method stub
 			Toast.makeText(getApplicationContext(), "Downloading Banner Ads", 3000).show();
 		}
 		
 		@Override
-		public void onLoadAdSucceeded(MobPartnerAdView arg0,
-				MobPartnerAdCampaign arg1) {
+		public void onLoadAdSucceeded() {
 			// TODO Auto-generated method stub
 			Toast.makeText(getApplicationContext(), "Banner Ad loading succeeded", 3000).show();
 		}
 		
 		@Override
-		public void onLoadAdFailed(MobPartnerAdView arg0, String arg1) {
+		public void onLoadAdFailed(String arg1) {
 			// TODO Auto-generated method stub
 			Toast.makeText(getApplicationContext(), "Banner Ad load failed, please make sure you inserted your poolID", 10000).show();
 		}
 		
 		@Override
-		public void onAdDisappeared(MobPartnerAdView arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void onAdClicked(MobPartnerAdView arg0, MobPartnerAdObject arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void onAdChanged(MobPartnerAdView arg0, MobPartnerAdObject arg1) {
+		public void onAdDisappeared() {
 			// TODO Auto-generated method stub
 			
 		}
@@ -147,41 +141,29 @@ public class MobpartnerSampleActivity extends Activity {
 	private MobPartnerAdListener mInsterstitialListener = new MobPartnerAdListener() {
 		
 		@Override
-		public void onStartDownloadAds(MobPartnerAdView arg0) {
+		public void onStartDownloadAds() {
 			// TODO Auto-generated method stub
 			Log.i(LOG_TAG, "Downloading Interstitial Ads");
 		}
 		
 		@Override
-		public void onLoadAdSucceeded(MobPartnerAdView arg0,
-				MobPartnerAdCampaign arg1) {
+		public void onLoadAdSucceeded() {
 			// TODO Auto-generated method stub
 			Log.i(LOG_TAG, "Interstitial Load succeeded");
 		}
 		
 		@Override
-		public void onLoadAdFailed(MobPartnerAdView arg0, String arg1) {
+		public void onLoadAdFailed(String arg1) {
 			// TODO Auto-generated method stub
 			Log.i(LOG_TAG, "Interstitial load failed, please check if there is any Interstitial in your pool");
 		}
 		
 		@Override
-		public void onAdDisappeared(MobPartnerAdView arg0) {
+		public void onAdDisappeared() {
 			// TODO Auto-generated method stub
 			
 		}
-		
-		@Override
-		public void onAdClicked(MobPartnerAdView arg0, MobPartnerAdObject arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void onAdChanged(MobPartnerAdView arg0, MobPartnerAdObject arg1) {
-			// TODO Auto-generated method stub
-			
-		}
+
 	};
 	
 
@@ -204,8 +186,7 @@ public class MobpartnerSampleActivity extends Activity {
     protected void onRestart() {
         super.onRestart();
         if(mBanner != null) {
-        	mBanner.stopOrPauseMobPartnerAd();
-	        mBanner.getMobPartnerAd();
+	        mBanner.show();
         }
     }
 
@@ -213,7 +194,6 @@ public class MobpartnerSampleActivity extends Activity {
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		super.onBackPressed();
-        if(mBanner != null) mBanner.stopOrPauseMobPartnerAd();
         if(mInterstitial != null) mInterstitial.dismiss();
 	}
 

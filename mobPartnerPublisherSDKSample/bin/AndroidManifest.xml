@@ -31,11 +31,6 @@
             </intent-filter>
         </activity>
         
-        <activity
-            android:name="com.mobpartner.android.publisher.views.MobPartnerMobwallActivity"
-            android:theme="@android:style/Theme.NoTitleBar">
-        </activity>
-        
     </application>
 
 </manifest>

@@ -9,27 +9,24 @@
         
          <LinearLayout 
 	        android:layout_width="fill_parent"
-	        android:layout_height="0dp"
-	        android:layout_weight="3"
-	        android:orientation="vertical"
-	        android:gravity="center_vertical|center_horizontal">
+	        android:layout_height="210dp"
+	        android:gravity="bottom">
 	        
-            <ImageView 
-                android:src="@drawable/logo"
-                android:contentDescription="@string/interstitial_show"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:scaleType="centerCrop"
-	        	android:adjustViewBounds="true" />
-	        
-        </LinearLayout>
+	        <com.mobpartner.android.publisher.views.MobPartnerMobWidget    	
+		        android:layout_marginLeft="10dp"
+		        android:layout_marginRight="10dp"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+			    mobpartner:poolId="3809"/>         
+        
+    	</LinearLayout>
         
         <LinearLayout 
 	        android:layout_width="fill_parent"
-	        android:layout_height="0dp"
-	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
 	        android:orientation="horizontal"
-	        android:gravity="center_vertical|center_horizontal">    
+	        android:gravity="center_vertical|center_horizontal"
+	        android:layout_marginTop="10dp">    
 	        
             <TextView
                 android:layout_width="wrap_content"
@@ -58,8 +55,7 @@
         
         <LinearLayout 
 	        android:layout_width="fill_parent"
-	        android:layout_height="0dp"
-	        android:layout_weight="2"
+	        android:layout_height="wrap_content"
 	        android:orientation="vertical"
 	        android:gravity="top">
         
@@ -67,7 +63,7 @@
 	            android:id="@+id/button1"
 			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
-			    android:textSize="20sp"
+			    android:textSize="18sp"
 			    android:textColor="#FFFFFF"
 			    android:layout_marginLeft="80dp"
 			    android:layout_marginRight="80dp"
@@ -78,18 +74,29 @@
 	            android:id="@+id/button2"
 			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
-			    android:textSize="20sp"
+			    android:textSize="18sp"
 			    android:textColor="#FFFFFF"
 			    android:layout_marginLeft="80dp"
 			    android:layout_marginRight="80dp"
-			    android:onClick="refreshBanner"
-			    android:text="@string/refresh_banner" />     
+			    android:onClick="showBanner"
+			    android:text="@string/show_banner" />     
 			    
 	     	<Button
 	            android:id="@+id/button3"
 			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
-			    android:textSize="20sp"
+			    android:textSize="18sp"
+			    android:textColor="#FFFFFF"
+			    android:layout_marginLeft="80dp"
+			    android:layout_marginRight="80dp"
+			    android:onClick="showMobStream"
+			    android:text="@string/show_mobstream" /> 
+			    
+	     	<Button
+	            android:id="@+id/button4"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:textSize="18sp"
 			    android:textColor="#FFFFFF"
 			    android:layout_marginLeft="80dp"
 			    android:layout_marginRight="80dp"
@@ -102,12 +109,20 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="0dp"
 	        android:layout_weight="1"
+	        android:orientation="vertical"
 	        android:gravity="bottom">
 	        
 	        <com.mobpartner.android.publisher.views.MobPartnerAdBanner
-			    android:id="@+id/bannerdisplay"
-			    android:layout_width="fill_parent"
-			    android:layout_height="wrap_content"/>         
+			    android:id="@+id/banner"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:visibility="gone"/>         
+			    
+	        <com.mobpartner.android.publisher.views.MobPartnerMobStream
+			    android:id="@+id/mobstream"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:visibility="gone"/>   
         
     	</LinearLayout>
             
