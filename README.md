@@ -35,7 +35,7 @@ xmlns:mobpartner= http://schemas.android.com/apk/lib/com.mobpartner.android.publ
 
 Add the following to your xml layout (required only for **banner** and **MobStream** display)
 
-**For Banners: **
+#####For Banners:
 ```xml
 <com.mobpartner.android.publisher.views.MobPartnerAdBanner
     android:id="@+id/banner"
@@ -44,7 +44,7 @@ Add the following to your xml layout (required only for **banner** and **MobStre
     mobpartner:poolID="POOL_ID" />
 ```
 
-**For MobStream: **
+#####For MobStream:
 ```xml
 <com.mobpartner.android.publisher.views.MobPartnerMobStream
     android:layout_width="fill_parent"
@@ -78,8 +78,7 @@ private String Pool_ID;
 ###MobPartner Interstitial
 
 1. Initialize your interstitial: `interstitial = new MobPartnerAdInterstitial(this, POOL_ID);`
-2. Fetch content for your interstitial: `interstitial.fetchAds ();`
-3. Display it: `interstitial.show ();`
+2. Display it: `interstitial.show ();`
 
 
 ###MobPartner MobWall
@@ -99,7 +98,7 @@ private String Pool_ID;
 ## Callbacks
 
 Our SDK provides several callbacks you might find useful according to your integration.
-You just need to implement the MobPartnerAdListener interface and register it with the banner or interstitial. 
+You just need to implement the MobPartnerAdListener interface and register it with the desired Ad Unit. 
 
 ```java
 banner.setMobPartnerAdListener(listener);
