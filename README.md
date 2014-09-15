@@ -7,7 +7,7 @@ Before integrating the library you should make sure MobPartner provided you with
 
 ## Installations
 
-- Add the libraries: [MobPartnerAndroidPublisherSDK.jar](https://github.com/MobPartner/AndroidPublisherSDK/raw/master/MobPartnerAndroidPublisherSDK3_0_1.jar) and [google-play-services_lib] to your project.
+- Add the libraries: [MobPartnerAndroidPublisherSDK.jar](https://github.com/MobPartner/AndroidPublisherSDK/raw/master/MobPartnerAndroidPublisherSDK3_0_1.jar) and [google-play-services_lib](https://github.com/MobPartner/AndroidPublisherSDK/tree/master/google-play-services_lib) to your project.
 
 - In `Build Path`, make sure that the **MobPartnerAndroidPublisherSDK.jar** is listed in `Libraries` and selected 
 in `Order and Export`.
