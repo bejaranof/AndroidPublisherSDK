@@ -5,6 +5,7 @@ import com.mobpartner.android.publisher.views.MobPartnerAdInterstitial;
 import com.mobpartner.android.publisher.views.MobPartnerAdListener;
 import com.mobpartner.android.publisher.views.MobPartnerMobStream;
 import com.mobpartner.android.publisher.views.MobPartnerMobWall;
+import com.mobpartner.android.publisher.views.MobPartnerMobWidget;
 
 import android.os.Bundle;
 import android.annotation.SuppressLint;
@@ -15,18 +16,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 @SuppressLint("ShowToast")
 public class MobpartnerSampleActivity extends Activity {
 	
 	private MobPartnerAdBanner mBanner;
-	private MobPartnerMobStream mMobstream;
+	private MobPartnerMobStream mMobstream1, mMobstream2, mMobstream3, mMobstream4, mMobstream5;
 	private MobPartnerAdInterstitial mInterstitial;
 	private MobPartnerMobWall mMobwall;
+	private MobPartnerMobWidget mMobWidget;
 	private static String LOG_TAG="MobpartnerSampleApp";
 	private String mPoolID;
 	private EditText poolID;
+	private LinearLayout mobstreamLayout;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +39,20 @@ public class MobpartnerSampleActivity extends Activity {
 		
 		//Get MobPartnerAdBanner View Instance
 		mBanner = (MobPartnerAdBanner)findViewById(R.id.banner);
-		mMobstream = (MobPartnerMobStream)findViewById(R.id.mobstream);
+		mMobstream1 = (MobPartnerMobStream)findViewById(R.id.mobstream1);
+		mMobstream2 = (MobPartnerMobStream)findViewById(R.id.mobstream2);
+		mMobstream3 = (MobPartnerMobStream)findViewById(R.id.mobstream3);
+		mMobstream4 = (MobPartnerMobStream)findViewById(R.id.mobstream4);
+		mMobstream5 = (MobPartnerMobStream)findViewById(R.id.mobstream5);
 		
+		mMobWidget = (MobPartnerMobWidget)findViewById(R.id.mobwidget);
+		
+		mobstreamLayout = (LinearLayout) findViewById(R.id.mobstream_layout);
 		poolID = (EditText)findViewById(R.id.editText1);
 		mPoolID = poolID.getText().toString();
+		
+		mMobwall = new MobPartnerMobWall(this, mPoolID);
+		mInterstitial = new MobPartnerAdInterstitial(this, mPoolID);
 		
 		poolID.addTextChangedListener(new TextWatcher() {
 			
@@ -64,7 +78,7 @@ public class MobpartnerSampleActivity extends Activity {
 	
 	public void interstitialShow (View view){
 		//Initialize an interstitial ad
-		mInterstitial = new MobPartnerAdInterstitial(this, mPoolID);
+//		mInterstitial = new MobPartnerAdInterstitial(this, mPoolID);
 	
 		//Set listener to know any ad status notification
 		mInterstitial.setMobPartnerAdListener(mInsterstitialListener);
@@ -75,8 +89,8 @@ public class MobpartnerSampleActivity extends Activity {
 	}
 	
 	
-	public void showBanner (View view){		
-		mMobstream.setVisibility(View.GONE);
+	public void showBanner (View view){				
+		mobstreamLayout.setVisibility(View.GONE);		
 		mBanner.setVisibility(View.VISIBLE);
 		
 		//Set listener to know any ad status notification
@@ -92,23 +106,43 @@ public class MobpartnerSampleActivity extends Activity {
 	
 	public void showMobStream (View view){	
 		mBanner.setVisibility(View.GONE);
-		mMobstream.setVisibility(View.VISIBLE);
+		mobstreamLayout.setVisibility(View.VISIBLE);
 		
 		//Configure banner parameter
-		mMobstream.setPoolId(mPoolID);
+		mMobstream1.setPoolId(mPoolID);
+		mMobstream2.setPoolId(mPoolID);
+		mMobstream3.setPoolId(mPoolID);
+		mMobstream4.setPoolId(mPoolID);
+		mMobstream5.setPoolId(mPoolID);
+		
+		mMobstream1.setDimension("4x1");
+		mMobstream2.setDimension("4x2");
+		mMobstream3.setDimension("4x3");
+		mMobstream4.setDimension("2x2");
+		mMobstream5.setDimension("2x3");
 		
 		//Displays banner
-		mMobstream.show();
+		mMobstream1.show();
+		mMobstream2.show();
+		mMobstream3.show();
+		mMobstream4.show();
+		mMobstream5.show();
 		
 	}
 
 	public void mobwallShow (View view){
 		//Initialize Mobwall instance
-		mMobwall = new MobPartnerMobWall(this, mPoolID);
+//		mMobwall = new MobPartnerMobWall(this, mPoolID);
 		//Call and show Mobwall
 		mMobwall.show();
 	}
 	
+	public void showMobWidget (View view){
+		//Initialize Mobwall instance
+		mMobWidget.setPoolId(mPoolID);
+		//Call and show Mobwall
+		mMobWidget.show();
+	}
 	
 	private MobPartnerAdListener mBannerListener = new MobPartnerAdListener() {
 		

@@ -6,6 +6,7 @@
     <string name="interstitial_show">Show Interstitial</string>
     <string name="show_banner">Show Banner</string>
     <string name="show_mobstream">Show MobStream</string>
+     <string name="mobwidget_show">Show MobWidget</string>    
     <string name="mobpartner">MobPartner</string>
     <string name="PoolID">PoolID: </string>
     <string name="mobWall">MobWall </string>
