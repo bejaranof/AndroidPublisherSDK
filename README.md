@@ -60,7 +60,7 @@ Add the following to your xml layout (required only for **banner** and **MobStre
 <com.mobpartner.android.publisher.views.MobPartnerMobStream
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    mobpartner:poolID="POOL_ID" 
+    mobpartner:poolId="POOL_ID" 
     mobpartner:dimension="DIMENSION"/>
 ```
 **Note**: MobStream comes in five different dimensions (4x1, 4x2, 4x3, 2x2, 2x3). Please choose the dimension of your preference by assigning **"4x1"**, **"4x2"**, **"4x3"**, **"2x2"** or **"2x3"** to the dimension field.
