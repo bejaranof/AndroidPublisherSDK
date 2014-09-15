@@ -1,15 +1,18 @@
 ## Introduction
 This document describes the integration steps to include MobPartner Publisher library to your Android application.
-This library allows you to display advertising banners, interstitials, Mobwall, MobWidget and MobStream.
+This library allows you to display advertising  **banners**, **interstitials**, **Mobwall**, **MobWidget** and **MobStream**.
 
 ## Prerequisites
 Before integrating the library you should make sure MobPartner provided you with a **Pool ID**.
 
 ## Installations
 
-- Add the library [MobPartnerAndroidPublisherSDK.jar](https://github.com/MobPartner/AndroidPublisherSDK/raw/master/MobPartnerAndroidPublisherSDK3_0.jar) to your project.
+- Add the libraries: [MobPartnerAndroidPublisherSDK.jar](https://github.com/MobPartner/AndroidPublisherSDK/raw/master/MobPartnerAndroidPublisherSDK3_0_1.jar) and [google-play-services_lib] to your project.
 
-- In `Build Path`, make sure its listed in `Libraries` and selected in `Order and Export`.
+- In `Build Path`, make sure that the **MobPartnerAndroidPublisherSDK.jar** is listed in `Libraries` and selected 
+in `Order and Export`.
+
+- In `Properties`, under the `Android` tab, make sure that **google-play-services_lib** is added in the Library List section.
 
 
 ## Setup your Project for Ad Display
@@ -23,12 +26,13 @@ Add the following to your **AndroidManifest.xml** file
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 ```
 
 ###Add Required Layouts
 ####By XML:
 
-Add xlmns attribute to your layout (required only for **banner** and **MobStream** display)
+Add xlmns attribute to your layout (required only for **banner**, **MobWidget** and **MobStream** display)
 ```xml
 xmlns:mobpartner= http://schemas.android.com/apk/lib/com.mobpartner.android.publisher
 ```
@@ -43,17 +47,26 @@ Add the following to your xml layout (required only for **banner** and **MobStre
     android:layout_height="wrap_content"
     mobpartner:poolID="POOL_ID" />
 ```
+#####For MobWidget: 
+```xml
+<com.mobpartner.android.publisher.views.MobPartnerMobWidget 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    mobpartner:poolId="POOL_ID"/> 
+```
 
 #####For MobStream:
 ```xml
 <com.mobpartner.android.publisher.views.MobPartnerMobStream
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    mobpartner:poolID="POOL_ID" />
+    mobpartner:poolID="POOL_ID" 
+    mobpartner:dimension="DIMENSION"/>
 ```
+**Note**: MobStream comes in five different dimensions (4x1, 4x2, 4x3, 2x2, 2x3). Please choose the dimension of your preference by assigning **"4x1"**, **"4x2"**, **"4x3"**, **"2x2"** or **"2x3"** to the dimension field.
 
 ####Programmatically:
-Programmatically add your banner to your layout and initialize. The code below is only an example and you can adapt it to your needs.
+You also have the option of adding MobPartner's advertisement layout programmatically.The code below are only examples, you can adapt it to your needs.
 
 ```java
 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
@@ -68,31 +81,61 @@ Declare a global variable with your pool ID
 private String Pool_ID;
 ```
 
+##Display MobPartner Advertisements
+
+After setting the layout you can proceed to display the advertisement as the following:
+
 ###MobPartner Banner
 
-1. Initialize your banner: `banner = new MobPartnerAdBanner(this, POOL_ID);`
-2. Retrieve the view in your activity: `banner = (MobPartnerAdBanner)findViewById(R.id.banner); `
+1. Initialize your banner: `MobPartnerAdBanner banner = new MobPartnerAdBanner(this, POOL_ID);`
+2. Retrieve the view from your activity layout: `banner = (MobPartnerAdBanner)findViewById(R.id.banner); `
 3. Fetch content to fill your view: `banner.show`  
 
 
 ###MobPartner Interstitial
 
-1. Initialize your interstitial: `interstitial = new MobPartnerAdInterstitial(this, POOL_ID);`
+1. Initialize your interstitial: `MobPartnerAdInterstitial interstitial = new MobPartnerAdInterstitial(this, POOL_ID);`
 2. Display it: `interstitial.show ();`
 
 
 ###MobPartner MobWall
-1. Initialize your Mobwall: `mobwall = new MobPartnerMobwall(this, POOL_ID);`
+1. Initialize your Mobwall: `MobPartnerMobwall mobwall = new MobPartnerMobwall(this, POOL_ID);`
 2. Show mobwall view: `mobwall.show();`
+3. To closs mobwall programatically: `mobwall.dismiss();`
 
 ###MobPartner MobWidget
-1. Initialize your MobWidget: `mobwidget = new MobPartnerMobWidget(this, POOL_ID);`
+1. Initialize your MobWidget: `MobPartnerMobWidget mobwidget = new MobPartnerMobWidget(this, POOL_ID);`
 2. Show mobwall view: `mobwidget.show();`
 
 ###MobPartner MobStream
-1. Initialize your MobStream: `mobstream = new MobPartnerMobStream(this, POOL_ID);`
-2. Retrieve the view in your activity: `mobstream = (MobPartnerMobStream)findViewById(R.id.mobstream); `
-2. Show mobwall view: `mobstream.show();`
+1. Initialize your MobStream: `MobPartnerMobStream mobstream = new MobPartnerMobStream(this, POOL_ID);`
+2. Retrieve the view from your activity layout: `mobstream = (MobPartnerMobStream)findViewById(R.id.mobstream); `
+3. Set the dimension of the view: `mobstream.setDimension(DIMENSION);`
+4. Show mobstream view: `mobstream.show();`
+
+- **For DIMENSION "4x1":**
+```java
+mobstream.setDimension("4x1");
+```
+
+- **For DIMENSION "4x2":**
+```java
+mobstream.setDimension("4x2");
+```
+- **For DIMENSION "4x3":**
+```java
+mobstream.setDimension("4x3");
+```
+
+- **For DIMENSION "2x2";**
+```java
+mobstream.setDimension("2x2");
+```
+
+- **For DIMENSION "2x3";**
+```java
+mobstream.setDimension("2x3");
+```
 
 
 ## Callbacks
