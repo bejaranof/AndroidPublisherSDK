@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>   
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:mobpartner="http://schemas.android.com/apk/lib/com.mobpartner.android.publisher"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="#000000"
-        android:orientation="vertical" >
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:mobpartner="http://schemas.android.com/apk/lib/com.mobpartner.android.publisher" 
+	android:layout_width="fill_parent"
+	android:layout_height="match_parent"
+	android:fillViewport="true"
+	android:background="#000000">
         
         <ScrollView      
-	    android:layout_width="fill_parent"
+	    android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#000000">
         
 	        <LinearLayout 
 	            android:orientation="vertical"
 	            android:layout_width="match_parent"
-	            android:layout_height="wrap_content">
-	        
-		        <LinearLayout 
-			        android:layout_width="fill_parent"
-			        android:layout_height="210dp"
-			        android:gravity="bottom">
+	            android:layout_height="wrap_content">		
+	            
+	            <LinearLayout 
+				        android:layout_width="fill_parent"
+				        android:layout_height="210dp"
+				        android:orientation="vertical">
 			        
-			        <com.mobpartner.android.publisher.views.MobPartnerMobWidget  
-			            android:id="@+id/mobwidget"  	
-				        android:layout_marginLeft="10dp"
-				        android:layout_marginRight="10dp"
-				        android:layout_width="match_parent"
-				        android:layout_height="wrap_content"/>         
+	                	<com.mobpartner.android.publisher.views.MobPartnerAdBanner
+					    android:id="@+id/banner"
+					    android:layout_width="match_parent"
+					    android:layout_height="wrap_content"
+					    android:visibility="gone"/>     
+					    
+				        <com.mobpartner.android.publisher.views.MobPartnerMobWidget  
+				            android:id="@+id/mobwidget"  	
+					        android:layout_marginLeft="10dp"
+					        android:layout_marginRight="10dp"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:visibility="gone"/>         
 		        
 		    	</LinearLayout>
+		    		
 		        
 		        <LinearLayout 
 			        android:layout_width="fill_parent"
@@ -58,10 +66,8 @@
 		                <requestFocus />
 		            </EditText>
 		                
-		        </LinearLayout>
-		            
-		         
-		                    
+		        </LinearLayout>            
+		        
 		        
 		        <LinearLayout 
 			        android:layout_width="fill_parent"
@@ -124,6 +130,17 @@
 					    android:onClick="mobwallShow"
 					    android:text="@string/mobWall" /> 
 					    
+			     	<Button
+			            android:id="@+id/button5"
+					    android:layout_width="fill_parent"
+					    android:layout_height="wrap_content"
+					    android:textSize="18sp"
+					    android:textColor="#FFFFFF"
+					    android:layout_marginLeft="80dp"
+					    android:layout_marginRight="80dp"
+					    android:onClick="mobsearchShow"
+					    android:text="@string/mobSearch" /> 
+					    
 				</LinearLayout>
 				    
 		        <LinearLayout 
@@ -134,18 +151,13 @@
 			        android:layout_marginTop="10dp"   
 			        android:gravity="bottom">
 			        
-			        <com.mobpartner.android.publisher.views.MobPartnerAdBanner
-					    android:id="@+id/banner"
-					    android:layout_width="match_parent"
-					    android:layout_height="wrap_content"
-					    android:visibility="gone"/>         
 					
 			        <LinearLayout 
 			            android:id="@+id/mobstream_layout"
 				        android:layout_width="match_parent"
 				        android:layout_height="wrap_content"
 				        android:orientation="vertical"  
-				        android:gravity="center_horizontal"
+				        android:gravity="center_horizontal|center_horizontal"
 				        android:visibility="gone">
 		                
 				        <TextView
@@ -161,7 +173,7 @@
 				        <com.mobpartner.android.publisher.views.MobPartnerMobStream
 						    android:id="@+id/mobstream1"
 					        android:layout_width="match_parent"
-					        android:layout_height="100dp"/>   
+					        android:layout_height="wrap_content"/>   
 						    
 				       <TextView
 			                android:layout_width="wrap_content"
@@ -176,7 +188,7 @@
 				        <com.mobpartner.android.publisher.views.MobPartnerMobStream
 						    android:id="@+id/mobstream2"
 						    android:layout_width="match_parent"
-						    android:layout_height="200dp"/>   
+						    android:layout_height="wrap_content"/>   
 						    
 				        <TextView
 			                android:layout_width="wrap_content"
@@ -191,7 +203,7 @@
 				        <com.mobpartner.android.publisher.views.MobPartnerMobStream
 						    android:id="@+id/mobstream3"
 						    android:layout_width="match_parent"
-						    android:layout_height="300dp"/>  
+						    android:layout_height="wrap_content"/>  
 						    
 				        <TextView
 			                android:layout_width="wrap_content"
@@ -204,7 +216,7 @@
 			                android:text="MobStream - 2x2" />
 						    
 				        <com.mobpartner.android.publisher.views.MobPartnerMobStream
-						    android:id="@+id/mobstream4"
+				            android:id="@+id/mobstream4"
 						    android:layout_width="200dp"
 						    android:layout_height="200dp"/> 
 						    
@@ -218,12 +230,12 @@
 			                android:textColor="#FFFFFF"
 			                android:text="MobStream - 2x3" />
 						    
-				        <com.mobpartner.android.publisher.views.MobPartnerMobStream
-						    android:id="@+id/mobstream5"
-						    android:layout_width="200dp"
-						    android:layout_height="300dp"
-						    android:layout_marginBottom="10dp"/>   
-		         
+				    	<com.mobpartner.android.publisher.views.MobPartnerMobStream
+				    	    android:id="@+id/mobstream5"
+				    	    android:layout_marginBottom="15dp"
+					        android:layout_width="200dp"
+					        android:layout_height="300dp"
+					         />   
 	    	
 			        </LinearLayout>
 		    	</LinearLayout>
@@ -232,5 +244,5 @@
     	
         </ScrollView>
             
-    </LinearLayout>
+    </RelativeLayout>
     

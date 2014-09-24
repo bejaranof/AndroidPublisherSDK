@@ -10,6 +10,7 @@ import com.mobpartner.android.publisher.views.MobPartnerMobWidget;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -51,20 +52,21 @@ public class MobpartnerSampleActivity extends Activity {
 		poolID = (EditText)findViewById(R.id.editText1);
 		mPoolID = poolID.getText().toString();
 		
+		//Initialize Mobwall instance
 		mMobwall = new MobPartnerMobWall(this, mPoolID);
+		
+		//Initialize Interstitial instance
 		mInterstitial = new MobPartnerAdInterstitial(this, mPoolID);
 		
 		poolID.addTextChangedListener(new TextWatcher() {
 			
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				// TODO Auto-generated method stub				
 			}
 			
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-				// TODO Auto-generated method stub				
 			}
 			
 			@Override
@@ -76,10 +78,7 @@ public class MobpartnerSampleActivity extends Activity {
 				
 	}
 	
-	public void interstitialShow (View view){
-		//Initialize an interstitial ad
-//		mInterstitial = new MobPartnerAdInterstitial(this, mPoolID);
-	
+	public void interstitialShow (View view){	
 		//Set listener to know any ad status notification
 		mInterstitial.setMobPartnerAdListener(mInsterstitialListener);
 		
@@ -90,7 +89,7 @@ public class MobpartnerSampleActivity extends Activity {
 	
 	
 	public void showBanner (View view){				
-		mobstreamLayout.setVisibility(View.GONE);		
+		mMobWidget.setVisibility(View.GONE);		
 		mBanner.setVisibility(View.VISIBLE);
 		
 		//Set listener to know any ad status notification
@@ -105,7 +104,6 @@ public class MobpartnerSampleActivity extends Activity {
 	}
 	
 	public void showMobStream (View view){	
-		mBanner.setVisibility(View.GONE);
 		mobstreamLayout.setVisibility(View.VISIBLE);
 		
 		//Configure banner parameter
@@ -131,17 +129,24 @@ public class MobpartnerSampleActivity extends Activity {
 	}
 
 	public void mobwallShow (View view){
-		//Initialize Mobwall instance
-//		mMobwall = new MobPartnerMobWall(this, mPoolID);
 		//Call and show Mobwall
 		mMobwall.show();
 	}
 	
 	public void showMobWidget (View view){
+		mMobWidget.setVisibility(View.VISIBLE);		
+		mBanner.setVisibility(View.GONE);
+		
 		//Initialize Mobwall instance
 		mMobWidget.setPoolId(mPoolID);
 		//Call and show Mobwall
 		mMobWidget.show();
+	}
+	
+	public void mobsearchShow (View view){
+		Intent intent = new Intent(getApplicationContext(), MobSearchActivity.class);
+		intent.putExtra("poolID", mPoolID);  
+		startActivity(intent);		
 	}
 	
 	private MobPartnerAdListener mBannerListener = new MobPartnerAdListener() {
@@ -212,7 +217,6 @@ public class MobpartnerSampleActivity extends Activity {
 	@Override
     protected void onPause() {
         super.onPause();	        
-        if(mBanner != null) mBanner.stopOrPauseMobPartnerAd();
         if(mInterstitial != null) mInterstitial.dismiss();
     }
 

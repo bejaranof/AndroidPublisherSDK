@@ -10,5 +10,6 @@
     <string name="mobpartner">MobPartner</string>
     <string name="PoolID">PoolID: </string>
     <string name="mobWall">MobWall </string>
+    <string name="mobSearch">MobSearch </string>
     <string name="demoPool">3809</string>
 </resources>
