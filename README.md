@@ -1,13 +1,13 @@
 ## Introduction
 This document describes the integration steps to include MobPartner Publisher library to your Android application.
-This library allows you to display advertising  **banners**, **interstitials**, **Mobwall**, **MobWidget** and **MobStream**.
+This library allows you to display advertising **banners**, **interstitials**, **Mobwall**, **MobWidget**, **MobStream** and **MobSearch**.
 
 ## Prerequisites
 Before integrating the library you should make sure MobPartner provided you with a **Pool ID**.
 
 ## Installations
 
-- Add the libraries: [MobPartnerAndroidPublisherSDK.jar](https://github.com/MobPartner/AndroidPublisherSDK/raw/master/MobPartnerAndroidPublisherSDK3_0_1.jar) and [google-play-services_lib](https://github.com/MobPartner/AndroidPublisherSDK/tree/master/google-play-services_lib) to your project.
+- Add the libraries: [MobPartnerAndroidPublisherSDK.jar](https://github.com/MobPartner/AndroidPublisherSDK/raw/master/MobPartnerAndroidPublisherSDK4_0.jar) and [google-play-services_lib](https://github.com/MobPartner/AndroidPublisherSDK/tree/master/google-play-services_lib) to your project.
 
 - In `Build Path`, make sure that the **MobPartnerAndroidPublisherSDK.jar** is listed in `Libraries` and selected 
 in `Order and Export`.
@@ -15,7 +15,7 @@ in `Order and Export`.
 - In `Properties`, under the `Android` tab, make sure that **google-play-services_lib** is added in the Library List section.
 
 
-## Setup your Project for Ad Display
+## Setup your project for Ad Display
 
 
 ###Add the Required Permission
@@ -37,22 +37,21 @@ Add xlmns attribute to your layout (required only for **banner**, **MobWidget** 
 xmlns:mobpartner= http://schemas.android.com/apk/lib/com.mobpartner.android.publisher
 ```
 
-Add the following to your xml layout (required only for **banner** and **MobStream** display)
-
 #####For Banners:
 ```xml
 <com.mobpartner.android.publisher.views.MobPartnerAdBanner
     android:id="@+id/banner"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    mobpartner:poolID="POOL_ID" />
+    mobpartner:poolId="POOL_ID" />
 ```
+
 #####For MobWidget: 
 ```xml
 <com.mobpartner.android.publisher.views.MobPartnerMobWidget 
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    mobpartner:poolId="POOL_ID"/> 
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	mobpartner:poolId="POOL_ID"/> 
 ```
 
 #####For MobStream:
@@ -61,20 +60,23 @@ Add the following to your xml layout (required only for **banner** and **MobStre
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     mobpartner:poolId="POOL_ID" 
-    mobpartner:dimension="DIMENSION"/>
+	mobpartner:dimension="DIMENSION"/>
 ```
 **Note**: MobStream comes in five different dimensions (4x1, 4x2, 4x3, 2x2, 2x3). Please choose the dimension of your preference by assigning **"4x1"**, **"4x2"**, **"4x3"**, **"2x2"** or **"2x3"** to the dimension field.
+
 
 ####Programmatically:
 You also have the option of adding MobPartner's advertisement layout programmatically.The code below are only examples, you can adapt it to your needs.
 
+#####For Banners:
 ```java
 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
 banner = new MobPartnerAdBanner(this, POOL_ID);
 banner.setLayoutParams(layoutParams); 
 ```
 
-###Set your pool ID
+
+##Set your pool ID
 Declare a global variable with your pool ID
 
 ```java
@@ -111,7 +113,7 @@ After setting the layout you can proceed to display the advertisement as the fol
 1. Initialize your MobStream: `MobPartnerMobStream mobstream = new MobPartnerMobStream(this, POOL_ID);`
 2. Retrieve the view from your activity layout: `mobstream = (MobPartnerMobStream)findViewById(R.id.mobstream); `
 3. Set the dimension of the view: `mobstream.setDimension(DIMENSION);`
-4. Show mobstream view: `mobstream.show();`
+
 
 - **For DIMENSION "4x1":**
 ```java
@@ -136,6 +138,28 @@ mobstream.setDimension("2x2");
 ```java
 mobstream.setDimension("2x3");
 ```
+
+4.Show mobstream view: `mobstream.show();`
+
+###MobPartner MobSearch
+1. Initialize your MobSearch: `MobPartnerMobSearch search = new MobPartnerMobSearch(this, POOL_ID);`
+
+2. Insert the MobSearch banner inside a layout container.
+- Create a layout container to contain the MobSearch:
+`LinearLayout mobsearch = new LinearLayout(this);`
+- Add the MobSearch inside the layout container.  
+`layoutParam = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);`       
+`mobsearch.addView(search,layoutParam);`
+
+
+3. Insert the layout container as header inside your List View that displays your search View results.
+Example:
+`ListView mListView = (ListView) findViewById(R.id.list_view);`
+`mListView.addHeaderView(mobsearch);`
+`mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strings));`
+
+
+4. Inside your OnQueryTextListener that is linked to your search View Call: `search.queryTextChange(newText);`
 
 
 ## Callbacks
@@ -181,7 +205,3 @@ onAdDisappeared();
 
 ## Demo Project
 An Android demo project is available to test the different implementations and check the configurations. 
-
-## Code Documentation
-The framework's headers are documented and self explanatory.
-
