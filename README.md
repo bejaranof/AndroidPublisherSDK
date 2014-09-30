@@ -165,7 +165,7 @@ Example:
 ## Callbacks
 
 Our SDK provides several callbacks you might find useful according to your integration.
-You just need to implement the MobPartnerAdListener interface and register it with the desired Ad Unit. 
+You just need to implement the **MobPartnerAdListener** interface and register it with the desired Ad Unit. 
 
 ```java
 banner.setMobPartnerAdListener(listener);
@@ -180,7 +180,6 @@ banner.setMobPartnerAdListener(new MobPartnerAdListener() {
 		}) ;
 ```
 
-
 ###Callbacks
  
 - This callback is triggered when the fetch of an ad starts.  
@@ -188,10 +187,11 @@ banner.setMobPartnerAdListener(new MobPartnerAdListener() {
 onStartDownloadAds();
 ```
 
-- This callback is triggered when the SDK successfully fetched the ads.
+- This callback is triggered when the SDK successfully loaded the ads. **Recommended to be used with the show() method to avoid any empty view.**
 ```java
 onLoadAdSucceeded(); 
 ``` 
+
 
 - This callback is triggered when the fetch of ads failed or when there is no ad served.
 ```java
