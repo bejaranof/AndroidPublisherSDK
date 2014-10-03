@@ -7,7 +7,7 @@ Before integrating the library you should make sure MobPartner provided you with
 
 ## Installations
 
-- Add the libraries: [MobPartnerAndroidPublisherSDK.jar](https://github.com/MobPartner/AndroidPublisherSDK/raw/master/MobPartnerAndroidPublisherSDK4_0.jar) and [google-play-services_lib](https://github.com/MobPartner/AndroidPublisherSDK/tree/master/google-play-services_lib) to your project.
+- Add the libraries: [MobPartnerAndroidPublisherSDK.jar](https://github.com/MobPartner/AndroidPublisherSDK/raw/master/MobPartnerAndroidPublisherSDK4_0_1.jar) and [google-play-services_lib](https://github.com/MobPartner/AndroidPublisherSDK/tree/master/google-play-services_lib) to your project.
 
 - In `Build Path`, make sure that the **MobPartnerAndroidPublisherSDK.jar** is listed in `Libraries` and selected 
 in `Order and Export`.
@@ -187,7 +187,7 @@ banner.setMobPartnerAdListener(new MobPartnerAdListener() {
 onStartDownloadAds();
 ```
 
-- This callback is triggered when the SDK successfully loaded the ads. **Recommended to be used with the show() method to avoid any empty view.**
+- This callback is triggered when the SDK successfully loaded the ads.
 ```java
 onLoadAdSucceeded(); 
 ``` 
@@ -201,6 +201,11 @@ onLoadFailed(String errorMessage);
 - This callback is triggered when the Interstitial and MobWall disappear (automatically or because user dismissed it)
 ```java
 onAdDisappeared(); 
+```
+
+- This callback is triggered when the ad-unit is ready to start fetching content. **This callback is required if you want to show ad right away.** 
+```java 
+onReady()
 ```
 
 ## Demo Project
