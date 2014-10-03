@@ -427,13 +427,13 @@ containing a value of this type.
         public static final int hybrid=0x7f070004;
         public static final int list_view=0x7f070024;
         public static final int match_parent=0x7f07000c;
-        public static final int mobstream1=0x7f07001e;
-        public static final int mobstream2=0x7f07001f;
+        public static final int mobstream1layout=0x7f07001e;
+        public static final int mobstream2layout=0x7f07001f;
         public static final int mobstream3=0x7f070020;
         public static final int mobstream4=0x7f070021;
         public static final int mobstream5=0x7f070022;
         public static final int mobstream_layout=0x7f07001d;
-        public static final int mobwidget=0x7f070015;
+        public static final int mobwidgetlayout=0x7f070015;
         public static final int monochrome=0x7f070013;
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;

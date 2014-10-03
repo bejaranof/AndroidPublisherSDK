@@ -25,16 +25,15 @@
 	                	<com.mobpartner.android.publisher.views.MobPartnerAdBanner
 					    android:id="@+id/banner"
 					    android:layout_width="match_parent"
-					    android:layout_height="wrap_content"
-					    android:visibility="gone"/>     
+					    android:layout_height="wrap_content"/>     
 					    
-				        <com.mobpartner.android.publisher.views.MobPartnerMobWidget  
-				            android:id="@+id/mobwidget"  	
+				        <LinearLayout
+				            android:id="@+id/mobwidgetlayout"  	
 					        android:layout_marginLeft="10dp"
 					        android:layout_marginRight="10dp"
 					        android:layout_width="match_parent"
 					        android:layout_height="wrap_content"
-					        android:visibility="gone"/>         
+					        android:orientation="vertical"/>         
 		        
 		    	</LinearLayout>
 		    		
@@ -170,10 +169,11 @@
 			                android:textColor="#FFFFFF"
 			                android:text="MobStream - 4x1" />
 				        
-				        <com.mobpartner.android.publisher.views.MobPartnerMobStream
-						    android:id="@+id/mobstream1"
+				        <LinearLayout 
+						    android:id="@+id/mobstream1layout"
 					        android:layout_width="match_parent"
-					        android:layout_height="wrap_content"/>   
+					        android:layout_height="wrap_content"
+					        android:orientation="vertical"/>
 						    
 				       <TextView
 			                android:layout_width="wrap_content"
@@ -185,10 +185,12 @@
 			                android:textColor="#FFFFFF"
 			                android:text="MobStream - 4x2" />
 						    
-				        <com.mobpartner.android.publisher.views.MobPartnerMobStream
-						    android:id="@+id/mobstream2"
-						    android:layout_width="match_parent"
-						    android:layout_height="wrap_content"/>   
+				        <LinearLayout 
+						    android:id="@+id/mobstream2layout"
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:orientation="vertical"/>   
+					         
 						    
 				        <TextView
 			                android:layout_width="wrap_content"
@@ -203,7 +205,8 @@
 				        <com.mobpartner.android.publisher.views.MobPartnerMobStream
 						    android:id="@+id/mobstream3"
 						    android:layout_width="match_parent"
-						    android:layout_height="wrap_content"/>  
+						    android:layout_height="wrap_content"
+						    mobpartner:dimension="4x3"/>  
 						    
 				        <TextView
 			                android:layout_width="wrap_content"
@@ -234,8 +237,7 @@
 				    	    android:id="@+id/mobstream5"
 				    	    android:layout_marginBottom="15dp"
 					        android:layout_width="200dp"
-					        android:layout_height="300dp"
-					         />   
+					        android:layout_height="300dp"/>   
 	    	
 			        </LinearLayout>
 		    	</LinearLayout>

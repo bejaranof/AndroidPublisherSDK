@@ -13,7 +13,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -25,10 +24,10 @@ public class MobpartnerSampleActivity extends Activity {
 	
 	private MobPartnerAdBanner mBanner;
 	private MobPartnerMobStream mMobstream1, mMobstream2, mMobstream3, mMobstream4, mMobstream5;
+	private LinearLayout mMobstream1layout, mMobstream2layout, mMobWidgetLayout;
 	private MobPartnerAdInterstitial mInterstitial;
 	private MobPartnerMobWall mMobwall;
 	private MobPartnerMobWidget mMobWidget;
-	private static String LOG_TAG="MobpartnerSampleApp";
 	private String mPoolID;
 	private EditText poolID;
 	private LinearLayout mobstreamLayout;
@@ -38,25 +37,21 @@ public class MobpartnerSampleActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mobpartner_example);
 		
-		//Get MobPartnerAdBanner View Instance
+		//Get MobPartnerAdBanner View Instance			
 		mBanner = (MobPartnerAdBanner)findViewById(R.id.banner);
-		mMobstream1 = (MobPartnerMobStream)findViewById(R.id.mobstream1);
-		mMobstream2 = (MobPartnerMobStream)findViewById(R.id.mobstream2);
+		
+		mMobstream1layout = (LinearLayout)findViewById(R.id.mobstream1layout);
+		mMobstream2layout = (LinearLayout)findViewById(R.id.mobstream2layout);
 		mMobstream3 = (MobPartnerMobStream)findViewById(R.id.mobstream3);
 		mMobstream4 = (MobPartnerMobStream)findViewById(R.id.mobstream4);
 		mMobstream5 = (MobPartnerMobStream)findViewById(R.id.mobstream5);
 		
-		mMobWidget = (MobPartnerMobWidget)findViewById(R.id.mobwidget);
-		
+		mMobWidgetLayout = (LinearLayout)findViewById(R.id.mobwidgetlayout);		
 		mobstreamLayout = (LinearLayout) findViewById(R.id.mobstream_layout);
+		
 		poolID = (EditText)findViewById(R.id.editText1);
 		mPoolID = poolID.getText().toString();
 		
-		//Initialize Mobwall instance
-		mMobwall = new MobPartnerMobWall(this, mPoolID);
-		
-		//Initialize Interstitial instance
-		mInterstitial = new MobPartnerAdInterstitial(this, mPoolID);
 		
 		poolID.addTextChangedListener(new TextWatcher() {
 			
@@ -74,22 +69,50 @@ public class MobpartnerSampleActivity extends Activity {
 				// TODO Auto-generated method stub
 				mPoolID = poolID.getText().toString();
 			}
-		});
+		});			
+				
 				
 	}
 	
 	public void interstitialShow (View view){	
-		//Set listener to know any ad status notification
-		mInterstitial.setMobPartnerAdListener(mInsterstitialListener);
+		//Instantiate Interstitial instance
+		mInterstitial = new MobPartnerAdInterstitial(this, mPoolID);
 		
-		//Display Interstitial
-		mInterstitial.show();
+		//Set listener to know any ad status notification
+		mInterstitial.setMobPartnerAdListener(new MobPartnerAdListener() {
+			
+			@Override
+			public void onStartDownloadAds() {
+				
+			}
+			
+			@Override
+			public void onReady() {
+				//Display Interstitial
+				mInterstitial.show();
+			}
+			
+			@Override
+			public void onLoadAdSucceeded() {
+				
+			}
+			
+			@Override
+			public void onLoadAdFailed(String arg0) {
+				
+			}
+			
+			@Override
+			public void onAdDisappeared() {
+				
+			}
+		});		
 		
 	}
 	
 	
 	public void showBanner (View view){				
-		mMobWidget.setVisibility(View.GONE);		
+		mMobWidgetLayout.setVisibility(View.GONE);		
 		mBanner.setVisibility(View.VISIBLE);
 		
 		//Set listener to know any ad status notification
@@ -106,41 +129,172 @@ public class MobpartnerSampleActivity extends Activity {
 	public void showMobStream (View view){	
 		mobstreamLayout.setVisibility(View.VISIBLE);
 		
+		//Example 1: Instantiate MobStream with context, poolID and Dimension
+		mMobstream1 = new MobPartnerMobStream(this, mPoolID, "4x1");
+		
+		//Use this listener to show MobStream right away
+		mMobstream1.setMobPartnerAdListener(new MobPartnerAdListener() {
+			
+			@Override
+			public void onStartDownloadAds() {
+				
+			}
+			
+			@Override
+			public void onReady() {
+				mMobstream1.show();
+				mMobstream1layout.addView(mMobstream1);
+			}
+			
+			@Override
+			public void onLoadAdSucceeded() {
+				
+			}
+			
+			@Override
+			public void onLoadAdFailed(String arg0) {
+				
+			}
+			
+			@Override
+			public void onAdDisappeared() {
+				
+			}
+		});
+		
+		
+		//Example2: Instantiate MobStream only with context
+		mMobstream2 = new MobPartnerMobStream(this);
+		
 		//Configure banner parameter
-		mMobstream1.setPoolId(mPoolID);
 		mMobstream2.setPoolId(mPoolID);
-		mMobstream3.setPoolId(mPoolID);
-		mMobstream4.setPoolId(mPoolID);
-		mMobstream5.setPoolId(mPoolID);
-		
-		mMobstream1.setDimension("4x1");
 		mMobstream2.setDimension("4x2");
-		mMobstream3.setDimension("4x3");
-		mMobstream4.setDimension("2x2");
-		mMobstream5.setDimension("2x3");
 		
-		//Displays banner
-		mMobstream1.show();
-		mMobstream2.show();
-		mMobstream3.show();
+		//Use this listener to show MobStream right away
+		mMobstream2.setMobPartnerAdListener(new MobPartnerAdListener() {
+			
+			@Override
+			public void onStartDownloadAds() {
+				
+			}
+			
+			@Override
+			public void onReady() {
+				mMobstream2.show();
+				mMobstream2layout.addView(mMobstream2);
+			}
+			
+			@Override
+			public void onLoadAdSucceeded() {
+				
+			}
+			
+			@Override
+			public void onLoadAdFailed(String arg0) {
+				
+			}
+			
+			@Override
+			public void onAdDisappeared() {
+				
+			}
+		});
+
+		//Example3: configure MobStream parameter instantiated directly from the layout
+		mMobstream3.setPoolId(mPoolID);
+		mMobstream3.show();		
+		
+		mMobstream4.setPoolId(mPoolID);
+		mMobstream4.setDimension("2x2");
 		mMobstream4.show();
+		
+		mMobstream5.setPoolId(mPoolID);
+		mMobstream5.setDimension("2x3");
 		mMobstream5.show();
+		
 		
 	}
 
 	public void mobwallShow (View view){
-		//Call and show Mobwall
-		mMobwall.show();
+		//Instantiate MobPartnerMobwall
+		mMobwall = new MobPartnerMobWall(this, mPoolID);
+		
+		//Use this listener to show MobStream right away
+		mMobwall.setMobPartnerAdListener(new MobPartnerAdListener() {
+			
+			@Override
+			public void onStartDownloadAds() {
+				
+			}
+			
+			@Override
+			public void onReady() {
+				//Call and show Mobwall
+				mMobwall.show();
+			}
+			
+			@Override
+			public void onLoadAdSucceeded() {
+				
+			}
+			
+			@Override
+			public void onLoadAdFailed(String arg0) {
+				
+			}
+			
+			@Override
+			public void onAdDisappeared() {
+				
+			}
+		});
+				
+
 	}
 	
 	public void showMobWidget (View view){
-		mMobWidget.setVisibility(View.VISIBLE);		
+		mMobWidgetLayout.setVisibility(View.VISIBLE);		
 		mBanner.setVisibility(View.GONE);
 		
-		//Initialize Mobwall instance
+		//Instantiate MobWidget
+		mMobWidget = new MobPartnerMobWidget(this);
+		
+		mMobWidgetLayout.addView(mMobWidget);	
+		
+		//Set MobWidget poolID parameter
 		mMobWidget.setPoolId(mPoolID);
-		//Call and show Mobwall
-		mMobWidget.show();
+					
+		//Use this listener to show MobStream right away
+		mMobWidget.setMobPartnerAdListener(new MobPartnerAdListener() {
+			
+			@Override
+			public void onStartDownloadAds() {
+				
+			}
+			
+			@Override
+			public void onReady() {
+				//Call and show Mobwall
+				mMobWidget.show();
+				
+			}
+			
+			@Override
+			public void onLoadAdSucceeded() {
+				
+			}
+			
+			@Override
+			public void onLoadAdFailed(String arg0) {
+				
+			}
+			
+			@Override
+			public void onAdDisappeared() {
+				
+			}
+		});		
+		
 	}
 	
 	public void mobsearchShow (View view){
@@ -148,6 +302,7 @@ public class MobpartnerSampleActivity extends Activity {
 		intent.putExtra("poolID", mPoolID);  
 		startActivity(intent);		
 	}
+	
 	
 	private MobPartnerAdListener mBannerListener = new MobPartnerAdListener() {
 		
@@ -171,41 +326,17 @@ public class MobpartnerSampleActivity extends Activity {
 		
 		@Override
 		public void onAdDisappeared() {
-			// TODO Auto-generated method stub
 			
+		}
+
+		@Override
+		public void onReady() {
+			Toast.makeText(getApplicationContext(), "Banner ready to be displayed", 10000).show();
 		}
 
 	};
 	
-	private MobPartnerAdListener mInsterstitialListener = new MobPartnerAdListener() {
-		
-		@Override
-		public void onStartDownloadAds() {
-			// TODO Auto-generated method stub
-			Log.i(LOG_TAG, "Downloading Interstitial Ads");
-		}
-		
-		@Override
-		public void onLoadAdSucceeded() {
-			// TODO Auto-generated method stub
-			Log.i(LOG_TAG, "Interstitial Load succeeded");
-		}
-		
-		@Override
-		public void onLoadAdFailed(String arg1) {
-			// TODO Auto-generated method stub
-			Log.i(LOG_TAG, "Interstitial load failed, please check if there is any Interstitial in your pool");
-		}
-		
-		@Override
-		public void onAdDisappeared() {
-			// TODO Auto-generated method stub
-			
-		}
-
-	};
 	
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

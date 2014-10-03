@@ -111,13 +111,13 @@ int id holo_light 0x7f070006
 int id hybrid 0x7f070004
 int id list_view 0x7f070024
 int id match_parent 0x7f07000c
-int id mobstream1 0x7f07001e
-int id mobstream2 0x7f07001f
+int id mobstream1layout 0x7f07001e
+int id mobstream2layout 0x7f07001f
 int id mobstream3 0x7f070020
 int id mobstream4 0x7f070021
 int id mobstream5 0x7f070022
 int id mobstream_layout 0x7f07001d
-int id mobwidget 0x7f070015
+int id mobwidgetlayout 0x7f070015
 int id monochrome 0x7f070013
 int id none 0x7f070000
 int id normal 0x7f070001
