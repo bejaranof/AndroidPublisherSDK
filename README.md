@@ -150,7 +150,7 @@ mobstream.setDimension("2x3");
 mobstream.show();
 ```
 
-###MobPartner MobSearch
+#####MobPartner MobSearch
 1. Initialize your MobSearch: `MobPartnerMobSearch search = new MobPartnerMobSearch(this, POOL_ID);`
 
 2. Insert the MobSearch banner inside a layout container.
