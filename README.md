@@ -29,15 +29,22 @@ Add the following to your **AndroidManifest.xml** file
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 ```
 
-###Add Required Layouts
+###Display MobPartner Ad-units.
+There are two ways of displaying our ad-units. Directly through XML or programatically.
+
 ####By XML:
 
-Add xlmns attribute to your layout (required only for **banner**, **MobWidget** and **MobStream** display)
+This only works for **banner**, **MobWidget** and **MobStream**
+
+
+#####Add xlmns attribute to your layout file:
 ```xml
 xmlns:mobpartner= http://schemas.android.com/apk/lib/com.mobpartner.android.publisher
 ```
 
-#####For Banners:
+#####Add an ad-unit view to your layout:
+
+**Banners:**
 ```xml
 <com.mobpartner.android.publisher.views.MobPartnerAdBanner
     android:id="@+id/banner"
@@ -46,7 +53,7 @@ xmlns:mobpartner= http://schemas.android.com/apk/lib/com.mobpartner.android.publ
     mobpartner:poolId="POOL_ID" />
 ```
 
-#####For MobWidget: 
+**MobWidget:**
 ```xml
 <com.mobpartner.android.publisher.views.MobPartnerMobWidget 
 	android:layout_width="match_parent"
@@ -54,7 +61,7 @@ xmlns:mobpartner= http://schemas.android.com/apk/lib/com.mobpartner.android.publ
 	mobpartner:poolId="POOL_ID"/> 
 ```
 
-#####For MobStream:
+**MobStream:**
 ```xml
 <com.mobpartner.android.publisher.views.MobPartnerMobStream
     android:layout_width="fill_parent"
@@ -66,80 +73,82 @@ xmlns:mobpartner= http://schemas.android.com/apk/lib/com.mobpartner.android.publ
 
 
 ####Programmatically:
-You also have the option of adding MobPartner's advertisement layout programmatically.The code below are only examples, you can adapt it to your needs.
-
-#####For Banners:
-```java
-LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-banner = new MobPartnerAdBanner(this, POOL_ID);
-banner.setLayoutParams(layoutParams); 
-```
+You have the option of creating the MobPartner's advertisement view programmatically. After it is created you can add it to your layout.
 
 
-##Set your pool ID
-Declare a global variable with your pool ID
+#####MobPartner Banner
 
-```java
-private String Pool_ID;
-```
-
-##Display MobPartner Advertisements
-
-After setting the layout you can proceed to display the advertisement as the following:
-
-###MobPartner Banner
-
-1. Initialize your banner: `MobPartnerAdBanner banner = new MobPartnerAdBanner(this, POOL_ID);`
-2. Retrieve the view from your activity layout: `banner = (MobPartnerAdBanner)findViewById(R.id.banner); `
-3. Fetch content to fill your view: `banner.show`  
+1. Instantiate and initialize your banner: `MobPartnerAdBanner banner = new MobPartnerAdBanner(CONTEXT, POOL_ID);`
+2. Add the view to a layout: `bannerLayout.addView(banner);`
+3. Display content: `banner.show`  
 
 
-###MobPartner Interstitial
+#####MobPartner Interstitial
 
-1. Initialize your interstitial: `MobPartnerAdInterstitial interstitial = new MobPartnerAdInterstitial(this, POOL_ID);`
+1. Instantiate and initialize your interstitial: `MobPartnerAdInterstitial interstitial = new MobPartnerAdInterstitial(CONTEXT, POOL_ID);`
 2. Display it: `interstitial.show ();`
 
 
-###MobPartner MobWall
-1. Initialize your Mobwall: `MobPartnerMobwall mobwall = new MobPartnerMobwall(this, POOL_ID);`
+#####MobPartner MobWall
+1. Instantiate and initialize your Mobwall: `MobPartnerMobwall mobwall = new MobPartnerMobwall(CONTEXT, POOL_ID);`
 2. Show mobwall view: `mobwall.show();`
 3. To closs mobwall programatically: `mobwall.dismiss();`
 
-###MobPartner MobWidget
-1. Initialize your MobWidget: `MobPartnerMobWidget mobwidget = new MobPartnerMobWidget(this, POOL_ID);`
-2. Show mobwall view: `mobwidget.show();`
+#####MobPartner MobWidget
+1. Instantiate and initialize your MobWidget: `MobPartnerMobWidget mobwidget = new MobPartnerMobWidget(CONTEXT, POOL_ID);`
+2. Add the view to a layout: `mobwidgetLayout.addView(mobwidget);`
+3. Show mobwall view: `mobwidget.show();`
 
-###MobPartner MobStream
-1. Initialize your MobStream: `MobPartnerMobStream mobstream = new MobPartnerMobStream(this, POOL_ID);`
-2. Retrieve the view from your activity layout: `mobstream = (MobPartnerMobStream)findViewById(R.id.mobstream); `
-3. Set the dimension of the view: `mobstream.setDimension(DIMENSION);`
+#####MobPartner MobStream
+1. Instantiate and initialize your MobStream: `MobPartnerMobStream mobstream = new MobPartnerMobStream(CONTEXT, POOL_ID, DIMENSION);`
+2. Add the view to a layout: `mobstreamLayout.addView(mobstream);`
+3. Show mobstream view: `mobstream.show();`
 
+**Note**: MobStream comes in five different dimensions (4x1, 4x2, 4x3, 2x2, 2x3). Please choose the dimension of your preference by assigning **"4x1"**, **"4x2"**, **"4x3"**, **"2x2"** or **"2x3"** to the dimension field.
+
+
+However, you also have the option to set the different parameters separately.
+
+**Example:**
 
 - **For DIMENSION "4x1":**
 ```java
+MobPartnerMobStream mobstream = new MobPartnerMobStream(CONTEXT);
+mobstream.setPoolId(POOL_ID);
 mobstream.setDimension("4x1");
+mobstream.show();
 ```
 
 - **For DIMENSION "4x2":**
 ```java
+MobPartnerMobStream mobstream = new MobPartnerMobStream(CONTEXT);
+mobstream.setPoolId(POOL_ID);
 mobstream.setDimension("4x2");
+mobstream.show();
 ```
 - **For DIMENSION "4x3":**
 ```java
+MobPartnerMobStream mobstream = new MobPartnerMobStream(CONTEXT);
+mobstream.setPoolId(POOL_ID);
 mobstream.setDimension("4x3");
+mobstream.show();
 ```
 
 - **For DIMENSION "2x2";**
 ```java
+MobPartnerMobStream mobstream = new MobPartnerMobStream(CONTEXT);
+mobstream.setPoolId(POOL_ID);
 mobstream.setDimension("2x2");
+mobstream.show();
 ```
 
 - **For DIMENSION "2x3";**
 ```java
+MobPartnerMobStream mobstream = new MobPartnerMobStream(CONTEXT);
+mobstream.setPoolId(POOL_ID);
 mobstream.setDimension("2x3");
+mobstream.show();
 ```
-
-4.Show mobstream view: `mobstream.show();`
 
 ###MobPartner MobSearch
 1. Initialize your MobSearch: `MobPartnerMobSearch search = new MobPartnerMobSearch(this, POOL_ID);`
@@ -207,6 +216,9 @@ onAdDisappeared();
 ```java 
 onReady()
 ```
+
+**Note**: The callbacks will only work if you create you view programatically.
+
 
 ## Demo Project
 An Android demo project is available to test the different implementations and check the configurations. 
