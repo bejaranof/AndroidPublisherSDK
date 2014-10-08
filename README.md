@@ -32,7 +32,7 @@ Add the following to your **AndroidManifest.xml** file
 ###Display MobPartner Ad-units.
 There are two ways of displaying our ad-units. Directly through XML or programatically.
 
-####By XML:
+####Through XML:
 
 This only works for **banner**, **MobWidget** and **MobStream**
 
@@ -80,13 +80,13 @@ You have the option of creating the MobPartner's advertisement view programmatic
 
 1. Instantiate and initialize your banner: `MobPartnerAdBanner banner = new MobPartnerAdBanner(CONTEXT, POOL_ID);`
 2. Add the view to a layout: `bannerLayout.addView(banner);`
-3. Display content: `banner.show`  
+3. Display content: `banner.show();`  
 
 
 #####MobPartner Interstitial
 
 1. Instantiate and initialize your interstitial: `MobPartnerAdInterstitial interstitial = new MobPartnerAdInterstitial(CONTEXT, POOL_ID);`
-2. Display it: `interstitial.show ();`
+2. Display it: `interstitial.show();`
 
 
 #####MobPartner MobWall
@@ -158,7 +158,7 @@ mobstream.show();
 `LinearLayout mobsearch = new LinearLayout(this);`
 - Add the MobSearch inside the layout container.  
 `layoutParam = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);`       
-`mobsearch.addView(search,layoutParam);`
+`mobsearch.addView(search, layoutParam);`
 
 
 3. Insert the layout container as header inside your List View that displays your search View results.
@@ -214,7 +214,7 @@ onAdDisappeared();
 
 - This callback is triggered when the ad-unit is ready to start fetching content. **This callback is required if you want to show ad right away.** 
 ```java 
-onReady()
+onReady();
 ```
 
 **Note**: The callbacks will only work if you create you view programatically.
