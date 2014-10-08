@@ -24,7 +24,7 @@ public class MobpartnerSampleActivity extends Activity {
 	
 	private MobPartnerAdBanner mBanner;
 	private MobPartnerMobStream mMobstream1, mMobstream2, mMobstream3, mMobstream4, mMobstream5;
-	private LinearLayout mMobstream1layout, mMobstream2layout, mMobWidgetLayout;
+	private LinearLayout mMobstream1layout, mMobstream2layout, mMobWidgetLayout, mMobstreamLayout;
 	private MobPartnerAdInterstitial mInterstitial;
 	private MobPartnerMobWall mMobwall;
 	private MobPartnerMobWidget mMobWidget;
@@ -40,6 +40,7 @@ public class MobpartnerSampleActivity extends Activity {
 		//Get MobPartnerAdBanner View Instance			
 		mBanner = (MobPartnerAdBanner)findViewById(R.id.banner);
 		
+		mMobstreamLayout = (LinearLayout) findViewById(R.id.mobstream_layout);
 		mMobstream1layout = (LinearLayout)findViewById(R.id.mobstream1layout);
 		mMobstream2layout = (LinearLayout)findViewById(R.id.mobstream2layout);
 		mMobstream3 = (MobPartnerMobStream)findViewById(R.id.mobstream3);
@@ -112,8 +113,8 @@ public class MobpartnerSampleActivity extends Activity {
 	
 	
 	public void showBanner (View view){				
-		mMobWidgetLayout.setVisibility(View.GONE);		
-		mBanner.setVisibility(View.VISIBLE);
+		mMobWidgetLayout.removeAllViews();
+		mBanner.setVisibility(View.VISIBLE);		
 		
 		//Set listener to know any ad status notification
 		mBanner.setMobPartnerAdListener(mBannerListener);
@@ -127,6 +128,9 @@ public class MobpartnerSampleActivity extends Activity {
 	}
 	
 	public void showMobStream (View view){	
+		mMobstream1layout.removeAllViews();
+		mMobstream2layout.removeAllViews();
+		
 		mobstreamLayout.setVisibility(View.VISIBLE);
 		
 		//Example 1: Instantiate MobStream with context, poolID and Dimension
@@ -253,6 +257,7 @@ public class MobpartnerSampleActivity extends Activity {
 	}
 	
 	public void showMobWidget (View view){
+		mMobWidgetLayout.removeAllViews();
 		mMobWidgetLayout.setVisibility(View.VISIBLE);		
 		mBanner.setVisibility(View.GONE);
 		
