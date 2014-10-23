@@ -1,9 +1,22 @@
 ## Introduction
-This document describes the integration steps to include MobPartner Publisher library to your Android application.
-This library allows you to display advertising **banners**, **interstitials**, **Mobwall**, **MobWidget**, **MobStream** and **MobSearch**.
+MobPartnerSDK includes a software development kit (SDK) that enables you to promote other applications inside your app. This framework runs from Android 2.2 onwards and is MRAID 2.0 compliant.
+
+Distinct components are available in this SDK:
+
+A **banner** that is presented as part of an app. It can appear once the app has been launched.
+
+An **interstitial** that present an app. It can be launched when the app start or at any point during the app experience.
+
+A **MobWall** a component that will present applications grouped by categories with a detail mode. This can be used as a modal view or include it in a tabbar.
+
+A **MobStream** is a native ad unit that displays users a primary app offer that suits the content they are viewing. Fully customizable and easily implemented via our SDK helps you increase your conversion rate by giving the users a non-intrusive experience.
+
+A **MobbWidget** is a native ad unit, HTML-based allowing publishers to offer contextually relevant app suggestions to users, accelerating mobile revenue, and can be activated with a few lines of code, without the need for an SDK.
+
+A **MobSearch** is a new native mobile advertising unit helping developers monetize their apps by delivering contextually relevant app suggestions - displayed below an app’s search field in real time, as the user inputs their query. It uses a predictive text algorithm to serve an ad based on a combination of the text entered into the search field and the user’s characteristics.
 
 ## Prerequisites
-Before integrating the library you should make sure MobPartner provided you with a **Pool ID**.
+Before integrating the library you should make sure MobPartner provided you with a [**Pool ID**](http://www.mobpartner.com/).
 
 ## Installations
 
