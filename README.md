@@ -11,7 +11,7 @@ A **MobWall** a component that will present applications grouped by categories w
 
 A **MobStream** is a native ad unit that displays users a primary app offer that suits the content they are viewing. Fully customizable and easily implemented via our SDK helps you increase your conversion rate by giving the users a non-intrusive experience.
 
-A **MobbWidget** is a native ad unit, HTML-based allowing publishers to offer contextually relevant app suggestions to users, accelerating mobile revenue, and can be activated with a few lines of code, without the need for an SDK.
+A **MobWidget** is a native ad unit, HTML-based allowing publishers to offer contextually relevant app suggestions to users, accelerating mobile revenue, and can be activated with a few lines of code, without the need for an SDK.
 
 A **MobSearch** is a new native mobile advertising unit helping developers monetize their apps by delivering contextually relevant app suggestions - displayed below an app’s search field in real time, as the user inputs their query. It uses a predictive text algorithm to serve an ad based on a combination of the text entered into the search field and the user’s characteristics.
 
