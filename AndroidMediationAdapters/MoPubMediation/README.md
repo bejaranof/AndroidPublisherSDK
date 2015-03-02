@@ -225,6 +225,6 @@ public class CustomEventAdapterInterstitial extends CustomEventInterstitial{
 
 
 
-For a step by step documentation, please download the [Custom Native Network SDK Integration Guide] (https://github.com/MobPartner/AndroidOther/blob/master/AndroidMediationAdapters/MoPubMediation/Custom_Native_Network-MoPub_Mediation-MobPartner_Android_Version.pdf?raw=true).
+For a step by step documentation, please download the [Custom Native Network SDK Integration Guide] (https://github.com/MobPartner/AndroidPublisherSDK/blob/master/AndroidMediationAdapters/MoPubMediation/MoPub%20Mediation%20-%20Custom%20Native%20Network.pdf?raw=true).
 
 
