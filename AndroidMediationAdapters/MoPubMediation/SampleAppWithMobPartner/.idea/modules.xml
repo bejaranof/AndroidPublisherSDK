@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SampleAppWithMobPartner.iml" filepath="$PROJECT_DIR$/SampleAppWithMobPartner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SampleAppWithMobPartnerSDK.iml" filepath="$PROJECT_DIR$/SampleAppWithMobPartnerSDK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mopub-sdk/mopub-sdk.iml" filepath="$PROJECT_DIR$/mopub-sdk/mopub-sdk.iml" />
+    </modules>
+  </component>
+</project>
+
