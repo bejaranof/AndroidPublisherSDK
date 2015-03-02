@@ -5,7 +5,7 @@ MobPartner is compatible with MoPub Mediation. Two integration methods are provi
 ## Custom Network - Javascript Integration Method
 MoPub supports the integration of 3rd party Ad Network without SDK through Custom Network implementation. In order MoPub be able to support Ad Network that is not already listed, it will require the 3rd party Ad Network HTML code.
 
-For a step by step documentation, please download the [Custom Network Javascript Integration Guide] (https://github.com/MobPartner/AndroidOther/blob/master/AndroidMediationAdapters/MoPubMediation/Custom_Network-MoPub_Mediation-MobPartner_Android_Version.pdf?raw=true).
+For a step by step documentation, please download the [Custom Network Javascript Integration Guide] (https://github.com/MobPartner/AndroidPublisherSDK/blob/master/AndroidMediationAdapters/MoPubMediation/MoPub%20Mediation%20-%20Custom%20Network.pdf?raw=true).
 
 ## Custom Native Network - SDK Integration Method
 MoPub supports the integration of 3rd party Ad Network SDKs like MobPartner through Custom Native Network implementation. In order MoPub be able to support Ad Network that is not already listed, it will require the development of a Custom Event class.
